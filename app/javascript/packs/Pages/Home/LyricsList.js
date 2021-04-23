@@ -18,6 +18,13 @@ export default class LyricsList extends Component{
             console.log(err);
         })
     }
+    _handleDelete=(params)=>(e)=>{
+        e.preventDefault();
+        axios.delete(Url+"api/v1/contex/"+this.props.contexId+"/lyrics/"+params.id).then(res=>{
+           alert(res.data.message);
+            location.reload();
+        })
+    }
     _renderList(){
         var arr=[],data=this.state.data;
         for(var i=0;i<data.length;i++){
@@ -29,7 +36,8 @@ export default class LyricsList extends Component{
                     <Link to={{
                         pathname:'/edit',
                         state:data[i]
-                    }}>Edit</Link>
+                    }} className="btn btn-primary mr-2">Edit</Link>
+                    <button className="btn btn-danger" onClick={this._handleDelete(data[i])}>Delete</button>
                 </span>
             </li>)
         }

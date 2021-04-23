@@ -34,7 +34,7 @@ before_action :find_lyric, only: [:show,:update,:destroy]
     @lyrics=Lyric.find(params[:id])
     if@lyrics
       @lyrics.destroy
-      render json:{message:"User delete Success"}
+      render json:{message:"Data delete Success"}
     else
       render json:{error:"Unable to delete"},status: 400
     end
